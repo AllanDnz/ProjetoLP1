@@ -62,15 +62,15 @@ void CheckData(ofstream &data){
 int getOption(){
     int in;
 
-    cout << "Bem vindo ao Controle de dados de Funcionarios" << endl; 
+    cout << "Welcome to Employee Data Control" << endl; 
     cout << "----------------------------------------------" << endl;
-    cout << "1 - Adicione um Novo funcionario" << endl;
-    cout << "2 - Veja a lista de funcionarios" << endl;
-    cout << "3 - Atualize um funcionario" << endl;
-    cout << "4 - Remova um funcionario" << endl;
-    cout << "5 - Sair" << endl;
+    cout << "1 - Add a New Employee" << endl;
+    cout << "2 - See the list of employees" << endl;
+    cout << "3 - Update an employee" << endl;
+    cout << "4 - Remove an employee" << endl;
+    cout << "5 - Exit" << endl;
     cout << "----------------------------------------------" << endl;
-    cout << "Digite sua opcao [1-5]:" << endl;
+    cout << "Select an option [1-5]:" << endl;
     cin >> in;
     
     return in;
