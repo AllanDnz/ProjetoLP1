@@ -9,6 +9,7 @@ class Presidente : public Funcionario{
 
     public:
         Presidente();
+        Presidente(string areaDeFormacao, string FormacaoAcademicaMax);
         ~Presidente();
         string getAreaDeFormacao();
         string getFormacaoAcademicaMax();

@@ -10,11 +10,12 @@ class Gerente : public Funcionario
 
     public:
         Gerente();
+        Gerente(string areaDeSupervisao);
         ~Gerente();
         string getAreaDeSupervisao();
         void setAreaDeSupervisao(string areaDeSupervisao);
 
-    protected:
+    private:
        string areaDeSupervisao;
 
 };

@@ -10,6 +10,7 @@ class Diretor : public Funcionario
 
     public:
         Diretor();
+        Diretor(string areaDeSupervisao, string areaDeformacao);
         ~Diretor();
         string getAreaDeSupervisao();
         string getAreaDeFormacao();

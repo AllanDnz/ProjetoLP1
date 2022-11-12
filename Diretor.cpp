@@ -5,7 +5,14 @@
 using namespace std;
 
 Diretor::Diretor(){
+    areaDeSupervisao = "";
+    areaDeFormacao = "";
 
+}
+
+Diretor::Diretor(string areaDeSupervisao, string areaDeformacao){
+    setAreaDeSupervisao(areaDeSupervisao);
+    setAreaDeFormacao(areaDeFormacao);
 }
 
 string Diretor::getAreaDeSupervisao(){

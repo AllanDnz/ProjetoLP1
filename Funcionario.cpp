@@ -4,9 +4,26 @@
 
 using namespace std;
 
-
 Funcionario::Funcionario(){
+    codigo = 0;
+    nome = "";
+    endereco = "";
+    designacao = "";
+    telefone = "";
+    salario = 0;
+}
 
+
+Funcionario::Funcionario(int codigo, string nome, string endereco, string designacao,
+Data dataDeIngresso, string telefone, float salario){
+
+     SetCodigo(codigo);
+     setNome(nome);
+     setEndereco(endereco);
+     setDesignacao(designacao);
+     setDataDeIngresso(dataDeIngresso);
+     setTelefone(telefone);
+     setSalario(salario);
 }
 
 

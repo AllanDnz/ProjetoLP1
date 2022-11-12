@@ -1,20 +1,27 @@
 #include <iostream>
 #include <string>
 #include <fstream> 
+#include <vector>
+
+
 
 using namespace std;
 
 int getOption();
-void CheckData(ofstream &data);
+void CheckData(fstream &data);
 
 int main(){
 
-    ofstream data;
+    fstream data;
+    
+    
+    
+    
     CheckData(data);
 
     int options = getOption();
 
-    enum option{CREATE = 1, READ, UPDATE, DELETE, EXIT};
+    enum options{CREATE = 1, READ, UPDATE, DELETE, EXIT};
 
     while(options != EXIT){
         
@@ -22,32 +29,34 @@ int main(){
         {
         case CREATE:
             // COLOCAR AQUI TODOS OS METODOS QUE SERÃO USADOS 
+          
             break;
         case READ:
             // COLOCAR AQUI TODOS OS METODOS QUE SERÃO USADOS 
+
             break;
         case UPDATE:
             // COLOCAR AQUI TODOS OS METODOS QUE SERÃO USADOS 
+           
             break;
         case DELETE:
             // COLOCAR AQUI TODOS OS METODOS QUE SERÃO USADOS 
+            
             break;        
         default:
             // COLOCAR AQUI TODOS OS METODOS QUE SERÃO USADOS 
             break;
         }
-
-
-        //FIM DO WHILE
+        
+        data.close(); //FIM DO WHILE
     }
 
-
-    data.close(); //FINALIZA O ARQUIVO DATA.TXT
+    
 }
 
 
-void CheckData(ofstream &data){
-    data.open("data.txt"); //INICIA O ARQUIVO DATA.TXT
+void CheckData(fstream &data){
+    data.open("data.txt", fstream::in | fstream::out | fstream::app); //INICIA O ARQUIVO DATA.TXT
 
     if(data.is_open()){
         cout << "File Exist and Started!" << endl;

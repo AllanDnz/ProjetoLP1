@@ -5,7 +5,14 @@
 using namespace std;
 
 Presidente::Presidente(){
+    areaDeFormacao = "";
+    formacaoAcademicaMax = "";
+}
 
+
+Presidente::Presidente(string areaDeFormacao, string FormacaoAcademicaMax){
+    setAreaDeFormacao(areaDeFormacao);
+    setFormacaoAcademicaMax(formacaoAcademicaMax);
 }
 
 string Presidente::getAreaDeFormacao(){
