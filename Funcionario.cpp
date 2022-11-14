@@ -89,4 +89,6 @@ void Funcionario::SetCodigo(int codigo){
     this->codigo = codigo;
 }
 
-
+string Funcionario::toString(){
+    return this->codigo + "\n" + this->nome + "\n" + this->endereco + "\n" + this->telefone + "\n" + this->dataDeIngresso.getData() + "\n" + this->designacao + "\n" + to_string(this->salario);
+}
