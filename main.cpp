@@ -11,13 +11,16 @@ int getOption();
 void CheckData(fstream &data);
 
 int main(){
+    
+    Data ingresso = Data();
+    int dia, mes, ano;
 
-    fstream data;
+    //fstream data;
+    vector<int> myVec;
     
     
     
-    
-    CheckData(data);
+    //CheckData(data);
 
     int options = getOption();
 
@@ -28,9 +31,48 @@ int main(){
         switch (options)
         {
         case CREATE:
-            // COLOCAR AQUI TODOS OS METODOS QUE SERÃO USADOS 
-          
+            int codigo;
+            string nome;
+            string endereco;
+            string telefone;
+            Data dataDeIngresso;
+            string designacao;
+            float salario;
+            cout << "CREATE" << endl;
+
+            cout << "Digite o código do funcionário" << endl;
+            getchar();
+            cin >> codigo;
+
+            cout << "Digite o nome do funcionário" << endl;
+            getline(cin, nome);
+
+            cout << "Digite o endereço do funcionário" << endl;
+            getline(cin, endereço);
+
+            cout << "Digite o telefone do funcionário" << endl;
+            getline(cin, telefone);    
+
+            cout << "Digite a data de ingresso do funcionário" << endl;
+            cin >> dia;
+            cin >> mes;
+            cin >> ano;
+
+            ingresso.setDia(dia);
+            ingresso.setMes(mes);
+            ingresso.setAno(ano);
+            
+            cout << "Digite a designação do funcionário" << endl;
+            getline(cin, designacao);
+
+            cout << "Digite o salário do funcionário" << endl;
+            cin >> salario;
+            
+
+
+            //função para inserir no arquivo //agenda.inserirContato(nome, endereco, telefone);
             break;
+          
         case READ:
             // COLOCAR AQUI TODOS OS METODOS QUE SERÃO USADOS 
 
@@ -48,7 +90,7 @@ int main(){
             break;
         }
         
-        data.close(); //FIM DO WHILE
+        //data.close(); //FIM DO WHILE
     }
 
     

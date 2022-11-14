@@ -4,10 +4,9 @@
 
 using namespace std;
 
-Diretor::Diretor(){
+Diretor::Diretor() : Funcionario(2){
     areaDeSupervisao = "";
     areaDeFormacao = "";
-
 }
 
 Diretor::Diretor(string areaDeSupervisao, string areaDeformacao){

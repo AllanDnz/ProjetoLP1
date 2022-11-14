@@ -13,6 +13,7 @@ class Funcionario
         Funcionario();
         Funcionario(int codigo, string nome, string endereco, string designacao,
         Data dataDeIngresso, string telefone, float salario);
+        Funcionario(int tipo);
         
         ~Funcionario();
         

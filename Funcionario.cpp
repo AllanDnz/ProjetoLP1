@@ -13,17 +13,21 @@ Funcionario::Funcionario(){
     salario = 0;
 }
 
+Funcionario::Funcionario(int tipo){
+    
+}
+
 
 Funcionario::Funcionario(int codigo, string nome, string endereco, string designacao,
 Data dataDeIngresso, string telefone, float salario){
 
-     SetCodigo(codigo);
-     setNome(nome);
-     setEndereco(endereco);
-     setDesignacao(designacao);
-     setDataDeIngresso(dataDeIngresso);
-     setTelefone(telefone);
-     setSalario(salario);
+    SetCodigo(codigo);
+    setNome(nome);
+    setEndereco(endereco);
+    setDesignacao(designacao);
+    setDataDeIngresso(dataDeIngresso);
+    setTelefone(telefone);
+    setSalario(salario);
 }
 
 
@@ -78,7 +82,7 @@ void Funcionario::setDesignacao(string designacao){
 }
 
 void Funcionario::setSalario(float salario){
-        this->salario = salario;
+    this->salario = salario;
 }
 
 void Funcionario::SetCodigo(int codigo){

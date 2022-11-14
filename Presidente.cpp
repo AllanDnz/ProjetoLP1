@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Presidente::Presidente(){
+Presidente::Presidente() : Funcionario(3){
     areaDeFormacao = "";
     formacaoAcademicaMax = "";
 }

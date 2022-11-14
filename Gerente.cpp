@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Gerente::Gerente(){
+Gerente::Gerente() : Funcionario(1){
     areaDeSupervisao = "";
 }
 
