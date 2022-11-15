@@ -4,6 +4,10 @@
 
 using namespace std;
 
+Gerente::~Gerente(){
+
+}
+
 Gerente::Gerente()
 {
     areaDeSupervisao = "";

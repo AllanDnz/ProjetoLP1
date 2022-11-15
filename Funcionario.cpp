@@ -4,6 +4,9 @@
 
 using namespace std;
 
+Funcionario::~Funcionario(){
+}
+
 Funcionario::Funcionario()
 {
     codigo = 0;

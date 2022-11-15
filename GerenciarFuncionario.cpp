@@ -88,7 +88,6 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
     int right;
 
     string nome;
-    int codigo;
     string endereco;
     string telefone;
     Data dataDeIngresso;
@@ -102,11 +101,9 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
     string areaDeSupervisao;
 
     Diretor diretor = Diretor();
-    string areaDeSupervisao;
     string areaDeFormacao;
 
     Presidente presidente = Presidente();
-    string areaDeFormacao;
     string formacaoAcademicaMax;
 
      while (right == 0)

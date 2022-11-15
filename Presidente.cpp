@@ -4,6 +4,12 @@
 
 using namespace std;
 
+
+Presidente::~Presidente(){
+
+
+}
+
 Presidente::Presidente()
 {
     areaDeFormacao = "";
@@ -15,6 +21,7 @@ Presidente::Presidente(string areaDeFormacao, string FormacaoAcademicaMax)
     setAreaDeFormacao(areaDeFormacao);
     setFormacaoAcademicaMax(formacaoAcademicaMax);
 }
+
 
 string Presidente::getAreaDeFormacao()
 {

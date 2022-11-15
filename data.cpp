@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 Data::Data(){
 
     dia = 1;
@@ -13,6 +14,10 @@ Data::Data(){
 
 string Data::getDia(){
   return dia;
+}
+
+string Data::getMes(){
+  return mes;
 }
 
 string Data::getAno(){

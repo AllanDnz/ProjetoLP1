@@ -33,11 +33,9 @@ int main()
     string areaDeSupervisao;
 
     Diretor diretor = Diretor();
-    string areaDeSupervisao;
     string areaDeFormacao;
 
     Presidente presidente = Presidente();
-    string areaDeFormacao;
     string formacaoAcademicaMax;
 
     int options = getOption();

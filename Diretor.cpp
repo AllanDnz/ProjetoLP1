@@ -4,6 +4,11 @@
 
 using namespace std;
 
+Diretor::~Diretor(){
+
+
+}
+
 Diretor::Diretor()
 {
     areaDeSupervisao = "";
