@@ -4,29 +4,34 @@
 
 using namespace std;
 
-Presidente::Presidente() : Funcionario(3){
+Presidente::Presidente()
+{
     areaDeFormacao = "";
     formacaoAcademicaMax = "";
 }
 
-
-Presidente::Presidente(string areaDeFormacao, string FormacaoAcademicaMax){
+Presidente::Presidente(string areaDeFormacao, string FormacaoAcademicaMax)
+{
     setAreaDeFormacao(areaDeFormacao);
     setFormacaoAcademicaMax(formacaoAcademicaMax);
 }
 
-string Presidente::getAreaDeFormacao(){
+string Presidente::getAreaDeFormacao()
+{
     return areaDeFormacao;
 }
 
-string Presidente::getFormacaoAcademicaMax(){
+string Presidente::getFormacaoAcademicaMax()
+{
     return formacaoAcademicaMax;
 }
 
-void Presidente::setAreaDeFormacao(string areaDeFromacao){
+void Presidente::setAreaDeFormacao(string areaDeFromacao)
+{
     this->areaDeFormacao = areaDeFormacao;
 }
 
-void Presidente::setFormacaoAcademicaMax(string formacaoAcademicaMax){
+void Presidente::setFormacaoAcademicaMax(string formacaoAcademicaMax)
+{
     this->formacaoAcademicaMax = formacaoAcademicaMax;
 }

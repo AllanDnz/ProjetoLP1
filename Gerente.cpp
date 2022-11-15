@@ -4,19 +4,22 @@
 
 using namespace std;
 
-Gerente::Gerente() : Funcionario(1){
+Gerente::Gerente()
+{
     areaDeSupervisao = "";
 }
 
-Gerente::Gerente(string areaDeSupervisao){
+Gerente::Gerente(string areaDeSupervisao)
+{
     setAreaDeSupervisao(areaDeSupervisao);
 }
 
-string Gerente::getAreaDeSupervisao(){
+string Gerente::getAreaDeSupervisao()
+{
     return areaDeSupervisao;
 }
 
-void Gerente::setAreaDeSupervisao(string areaDeSupervisao){
+void Gerente::setAreaDeSupervisao(string areaDeSupervisao)
+{
     this->areaDeSupervisao = areaDeSupervisao;
 }
-

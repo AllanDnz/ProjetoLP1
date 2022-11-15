@@ -4,27 +4,33 @@
 
 using namespace std;
 
-Diretor::Diretor() : Funcionario(2){
+Diretor::Diretor()
+{
     areaDeSupervisao = "";
     areaDeFormacao = "";
 }
 
-Diretor::Diretor(string areaDeSupervisao, string areaDeformacao){
+Diretor::Diretor(string areaDeSupervisao, string areaDeformacao)
+{
     setAreaDeSupervisao(areaDeSupervisao);
     setAreaDeFormacao(areaDeFormacao);
 }
 
-string Diretor::getAreaDeSupervisao(){
+string Diretor::getAreaDeSupervisao()
+{
     return areaDeSupervisao;
 }
-string Diretor::getAreaDeFormacao(){
+string Diretor::getAreaDeFormacao()
+{
     return areaDeFormacao;
 }
 
-void Diretor::setAreaDeFormacao(string areaDeFormacao){
+void Diretor::setAreaDeFormacao(string areaDeFormacao)
+{
     this->areaDeFormacao = areaDeFormacao;
 }
 
-void Diretor::setAreaDeSupervisao(string areaDeSupervisao){
-    this->areaDeSupervisao = areaDeSupervisao;    
+void Diretor::setAreaDeSupervisao(string areaDeSupervisao)
+{
+    this->areaDeSupervisao = areaDeSupervisao;
 }

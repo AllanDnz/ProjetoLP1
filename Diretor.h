@@ -5,16 +5,17 @@
 
 using namespace std;
 
-class Diretor : public Funcionario
-{
+class Diretor : public Funcionario{
 
     public:
-        Diretor();
-        Diretor(string areaDeSupervisao, string areaDeformacao);
+        Diretor(); 
+        Diretor(string areaDeSupervisao, string areaDeformacao); //construtor que define as informações do funcionário
         ~Diretor();
-        string getAreaDeSupervisao();
+
+        string getAreaDeSupervisao(); //funções get
         string getAreaDeFormacao();
-        void setAreaDeFormacao(string areaDeFormacao);
+    
+        void setAreaDeFormacao(string areaDeFormacao); //funções set
         void setAreaDeSupervisao(string areaDeSupervisao);
 
     protected:
