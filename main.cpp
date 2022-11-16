@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <locale>
 #include "Funcionario.h"
 #include "Gerente.h"
 #include "Diretor.h"
@@ -15,6 +16,7 @@ int getOption();
 
 int main()
 {
+    setlocale(LC_ALL, "portuguese");
 
     string nome;
     int codigo;
@@ -38,9 +40,7 @@ int main()
     Presidente presidente = Presidente();
     string formacaoAcademicaMax;
 
-    int options = getOption();
-
-    enum options
+    enum Options
     {
         CREATE = 1,
         READ,
@@ -51,8 +51,11 @@ int main()
         EXIT
     };
 
+    int options = Options::CREATE;
+
     while (options != EXIT)
     {
+        options = getOption();
 
         switch (options)
         {
@@ -77,9 +80,9 @@ int main()
             getline(cin, mes);
             getline(cin, ano);
 
-            ingresso.setDia(dia);
-            ingresso.setMes(mes);
-            ingresso.setAno(ano);
+            dataDeIngresso.setDia(dia);
+            dataDeIngresso.setMes(mes);
+            dataDeIngresso.setAno(ano);
 
             cout << "Digite a designação do funcionário (Operador, Gerente, Diretor ou Presidente):" << endl;
             getline(cin, designacao);
@@ -107,15 +110,11 @@ int main()
                 getline(cin, areaDeFormacao);
                 presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
             }
-            else if ((designacao == "operador") || (designacao == "Operador"))
-            {
-                continue;
-            }
 
             cout << "Digite o salário do funcionário" << endl;
             cin >> salario;
             cin.ignore();
-
+            
             gerenciar.adicionarNovoFuncionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, salario);
             break;
             // entrada das variáveis do funcionário e salvamento dessas no vetor de funcionários

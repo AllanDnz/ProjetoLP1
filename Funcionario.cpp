@@ -1,5 +1,6 @@
 #include "Funcionario.h"
 #include "data.h"
+#include <sstream>
 #include <iostream>
 
 using namespace std;
@@ -102,5 +103,8 @@ void Funcionario::setCodigo(int codigo)
 
 string Funcionario::toString()
 {
-    return this->codigo + "\n" + this->nome + "\n" + this->endereco + "\n" + this->telefone + "\n" + this->dataDeIngresso.getData() + "\n" + this->designacao + "\n" + to_string(this->salario);
+    ostringstream salarioStream;
+    salarioStream.precision(2);
+    salarioStream << fixed << this->salario;
+    return to_string(this->codigo) + "\n" + this->nome + "\n" + this->endereco + "\n" + this->telefone + "\n" + this->dataDeIngresso.getData() + "\n" + this->designacao + "\n" + salarioStream.str();
 }

@@ -5,11 +5,9 @@ using namespace std;
 
 
 Data::Data(){
-
-    dia = 1;
-    mes = 1;
-    ano = 1; 
-
+    dia = "1";
+    mes = "1";
+    ano = "1"; 
 }
 
 string Data::getDia(){
