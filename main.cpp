@@ -27,6 +27,7 @@ int main()
     float salario;
 
     GerenciarFuncionario gerenciar;
+    gerenciar.lerNoArquivo();
 
     Data ingresso = Data();
     string dia, mes, ano;
@@ -151,7 +152,7 @@ int main()
 
             break;
         default:
-            // COLOCAR AQUI TODOS OS METODOS QUE SERÃO USADOS
+            gerenciar.salvarNoArquivo();
             break;
         }
 

@@ -83,9 +83,11 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
 {
     int edit;
     int codigo;
+
+    cout << "Digite o código do funcionárion que você deseja editar" << endl;
     cin >> codigo;
     getchar();
-    int right;
+    int right = 0;
 
     string nome;
     string endereco;
@@ -115,17 +117,17 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
 
                 cout << "Editar o registo do funcionário" << codigo << endl;
                 cout << "Digite o que deseja editar:" << endl;
-                cout << "/t1 - Codigo" << endl;
-                cout << "/t2 - Nome" << endl;
-                cout << "/t3 - Endereco" << endl;
-                cout << "/t4 - Telefone" << endl;
-                cout << "/t5 - Data de ingresso" << endl;
-                cout << "/t6 - Designacao" << endl;
-                cout << "/t7 - Area de Supervisao" << endl;
-                cout << "/t8 - Area de Formacao" << endl;
-                cout << "/t9 - Formacao Academica Maxima" << endl;
-                cout << "/t0 - Salario" << endl;
-                cout << "/t11 - Sair" << endl;
+                cout << "\t1 - Codigo" << endl;
+                cout << "\t2 - Nome" << endl;
+                cout << "\t3 - Endereco" << endl;
+                cout << "\t4 - Telefone" << endl;
+                cout << "\t5 - Data de ingresso" << endl;
+                cout << "\t6 - Designacao" << endl;
+                cout << "\t7 - Area de Supervisao" << endl;
+                cout << "\t8 - Area de Formacao" << endl;
+                cout << "\t9 - Formacao Academica Maxima" << endl;
+                cout << "\t0 - Salario" << endl;
+                cout << "\t11 - Sair" << endl;
                 cin >> edit;
                 cin.ignore();
 
@@ -158,9 +160,10 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                     getline(cin, mes);
                     getline(cin, ano);
 
-                    ingresso.setDia(dia);
-                    ingresso.setMes(mes);
-                    ingresso.setAno(ano);
+                    dataDeIngresso.setDia(dia);
+                    dataDeIngresso.setMes(mes);
+                    dataDeIngresso.setAno(ano);
+                    funcionarios[i]->setDataDeIngresso(dataDeIngresso);
                     break;
                 case 6:
                     cout << "Digite a nova designação do funcionário (Operador, Gerente, Diretor ou Presidente):" << endl;
@@ -170,6 +173,8 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                         cout << "Digite a nova area de supervisao" << endl;
                         getline(cin, areaDeSupervisao);
                         gerente.setAreaDeSupervisao(areaDeSupervisao);
+
+                        funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
                     }
                     else if ((designacao == "diretor") || (designacao == "Diretor"))
                     {
@@ -179,20 +184,25 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                         cout << "Digite a nova área de formação" << endl;
                         getline(cin, areaDeFormacao);
                         diretor.setAreaDeFormacao(areaDeSupervisao);
+
+                        funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
+                        funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
                     }
                     else if ((designacao == "presidente") || (designacao == "Presidente"))
                     {
                         cout << "Digite a nova área de formação" << endl;
                         getline(cin, areaDeFormacao);
-                        presidente.setAreaDeFormacao(areaDeSupervisao);
+                        presidente.setAreaDeFormacao(areaDeFormacao);
                         cout << "Digite a nova formação máxima" << endl;
-                        getline(cin, areaDeFormacao);
+                        getline(cin, formacaoAcademicaMax);
                         presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
+
+                        funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
+                        funcionarios[i]->setFormacaoAcademicaMax(formacaoAcademicaMax);
                     }
-                    else if ((designacao == "operador") || (designacao == "Operador"))
-                    {
-                        continue;
-                    }
+
+                    funcionarios[i]->setDesignacao(designacao);
+
                     break;
                 case 7:
                     cout << "Digite a designação do funcionário (Gerente ou Diretor):" << endl;
@@ -353,15 +363,34 @@ void GerenciarFuncionario::excluirRegistroDeFuncionario()
 // função para salvar no arquivo os funcionários criados
 void GerenciarFuncionario::salvarNoArquivo()
 {
-    std::ofstream arquivo("data.csv", std::ios::app);
+    std::ofstream arquivo("data.csv");
 
     if (!arquivo.is_open())
     {
         return;
     }
-    for (Funcionario *funcionario : funcionarios)
+
+    for (int i = 0; i < funcionarios.size(); i++)
     {
-        arquivo << funcionario->getCodigo() << "," << funcionario->getNome() << "," << funcionario->getEndereco() << "," << funcionario->getTelefone() << "," << funcionario->getDataDeIngresso().getDia() << "," << funcionario->getDataDeIngresso().getMes() << "," << funcionario->getDataDeIngresso().getAno() << "," << funcionario->getDesignacao() << "," << funcionario->getAreaDeSupervisao() << "," << funcionario->getAreaDeFormacao() << "," << funcionario->getFormacaoAcademicaMax() << "," << funcionario->getSalario() << endl;
+        Funcionario *funcionario = funcionarios[i];
+        int codigo = funcionario->getCodigo();
+        string nome = funcionario->getNome();
+        string endereco = funcionario->getEndereco();
+        string telefone = funcionario->getTelefone();
+        string dia = funcionario->getDataDeIngresso().getDia();
+        string mes = funcionario->getDataDeIngresso().getMes();
+        string ano = funcionario->getDataDeIngresso().getAno();
+        string designacao = funcionario->getDesignacao();
+        float salario = funcionario->getSalario();
+
+        cout << funcionario->getDataDeIngresso().getData() << endl;
+
+        arquivo << codigo << "," << nome << "," << endereco << "," << telefone << "," << dia << "," << mes << "," << ano << "," << designacao << "," << funcionario->getAreaDeSupervisao() << "," << funcionario->getAreaDeFormacao() << "," << funcionario->getFormacaoAcademicaMax() << "," << salario;
+
+        if (i != (funcionarios.size() - 1))
+        {
+            arquivo << "\n";
+        }
     }
 
     arquivo.close();
@@ -370,6 +399,11 @@ void GerenciarFuncionario::salvarNoArquivo()
 void GerenciarFuncionario::lerNoArquivo() // Codigo para ler no arquivo os funcionários salvos pela função salvar no arquivo
 {
     std::ifstream arquivo("data.csv");
+
+    if (!arquivo.is_open())
+    {
+        return;
+    }
 
     while (1)
     {
@@ -399,12 +433,12 @@ void GerenciarFuncionario::lerNoArquivo() // Codigo para ler no arquivo os funci
         getline(arquivo, areaDeSupervisao, ',');
         getline(arquivo, areaDeFormacao, ',');
         getline(arquivo, formacaoAcademicaMax, ',');
-        getline(arquivo, salario, ',');
+        getline(arquivo, salario, '\n');
 
         Data dataDeIngresso;
         dataDeIngresso.setDia(dia);
-        dataDeIngresso.setDia(mes);
-        dataDeIngresso.setDia(ano);
+        dataDeIngresso.setMes(mes);
+        dataDeIngresso.setAno(ano);
 
         adicionarNovoFuncionario(stoi(codigo), nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, stof(salario));
 
