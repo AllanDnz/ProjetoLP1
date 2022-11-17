@@ -22,13 +22,11 @@ GerenciarFuncionario::~GerenciarFuncionario()
   //  if(designacao == "presidente" || designacao == "Presidente"){
   //      funcionarios.push_back(new Presidente(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, formacaoAcademicaMax, salario));
   //  }
-    
+
 //}
 void GerenciarFuncionario::adicionarNovoFuncionario(Funcionario *func)
 {
     funcionarios.push_back(func);
-
-
 }
 
 
@@ -39,6 +37,8 @@ void GerenciarFuncionario::exibirListaDeFuncionarios()
         cout << funcionarios[i]->toString() << endl;
     }
     cout << "\n";
+    system("pause");
+    system("cls");
 }
 
 void GerenciarFuncionario::exibirListaDeFuncionariosPorTipo()
@@ -63,6 +63,8 @@ void GerenciarFuncionario::exibirListaDeFuncionariosPorTipo()
             }
 
             cout << "\n";
+            system("pause");
+            system("cls");
         }
     }
 }
@@ -89,6 +91,8 @@ void GerenciarFuncionario::exibirRegistroDeUmFuncionario()
             }
         }
     }
+    system("pause");
+    system("cls");
 }
 
 void GerenciarFuncionario::editarRegistroDeUmFuncionario()
@@ -126,7 +130,7 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
         {
             if (codigo == funcionarios[i]->getCodigo())
             {
-
+                system("cls");
                 cout << "Editar o registo do funcionário" << codigo << endl;
                 cout << "Digite o que deseja editar:" << endl;
                 cout << "\t1 - Codigo" << endl;
@@ -135,11 +139,8 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                 cout << "\t4 - Telefone" << endl;
                 cout << "\t5 - Data de ingresso" << endl;
                 cout << "\t6 - Designacao" << endl;
-                cout << "\t7 - Area de Supervisao" << endl;
-                cout << "\t8 - Area de Formacao" << endl;
-                cout << "\t9 - Formacao Academica Maxima" << endl;
-                cout << "\t0 - Salario" << endl;
-                cout << "\t11 - Sair" << endl;
+                cout << "\t7 - Salario" << endl;
+                cout << "\t8 - Sair" << endl;
                 cin >> edit;
                 cin.ignore();
 
@@ -177,82 +178,50 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                     dataDeIngresso.setAno(ano);
                     funcionarios[i]->setDataDeIngresso(dataDeIngresso);
                     break;
-                case 6:
+                case 6:{
+                    int codigo = funcionarios[i]->getCodigo();
+                    float salario = funcionarios[i]->getSalario();
+                    string nome = funcionarios[i]->getNome();
+                    string endereco = funcionarios[i]->getEndereco();
+                    string telefone = funcionarios[i]->getTelefone();
+                    Data dataDeIngresso = funcionarios[i]->getDataDeIngresso();
+                    string designacao = funcionarios[i]->getDesignacao();
+                    string areaDeSupervisao;
+                    string areaDeFormacao;
+                    string formacaoAcademicaMax;
                     cout << "Digite a nova designação do funcionário (Operador, Gerente, Diretor ou Presidente):" << endl;
+                    string antiga = funcionarios[i]->getDesignacao();
                     getline(cin, designacao);
-                    if ((designacao == "gerente") || (designacao == "Gerente"))
-                    {
-                        cout << "Digite a nova area de supervisao" << endl;
-                        getline(cin, areaDeSupervisao);
-                        gerente.setAreaDeSupervisao(areaDeSupervisao);
-
-                       // funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
+                    //cout<<"To aqui "<<antiga<<" Nova "<<designacao;
+                    if(antiga == designacao){
+                        cout<<"hello";
                     }
-                    else if ((designacao == "diretor") || (designacao == "Diretor"))
-                    {
-                        cout << "Digite a nova área de supervisão" << endl;
-                        getline(cin, areaDeSupervisao);
-                        diretor.setAreaDeSupervisao(areaDeSupervisao);
-                        cout << "Digite a nova área de formação" << endl;
-                        getline(cin, areaDeFormacao);
-                        diretor.setAreaDeFormacao(areaDeSupervisao);
+                    if(antiga != designacao){
 
-                      //  funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
-                       // funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
+                        if(designacao == "Gerente"){
+                            cout<<"\nDigite a area de supervisao\n";
+                            getline(cin, areaDeSupervisao);
+                            funcionarios.erase(funcionarios.begin() + i);
+                            funcionarios.push_back(new Gerente(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeSupervisao, salario));
+                        }else if(designacao == "Diretor"){
+                            cout<<"\nDigite a area de supervisao\n";
+                            getline(cin, areaDeSupervisao);
+                            cout<<"\nDigite a area de Formação\n";
+                            getline(cin, areaDeFormacao);
+                            funcionarios.erase(funcionarios.begin() + i);
+                            funcionarios.push_back(new Diretor(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeSupervisao, areaDeFormacao, salario));
+                        }else if(designacao == "Presidente"){
+                            cout<<"\nDigite a area de formação\n";
+                            getline(cin, areaDeFormacao);
+                            cout<<"\nDigite a area de formação maxima\n";
+                            getline(cin, formacaoAcademicaMax);
+                            funcionarios.erase(funcionarios.begin() + i);
+                            funcionarios.push_back(new Presidente(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, formacaoAcademicaMax, salario));
+                        }
                     }
-                    else if ((designacao == "presidente") || (designacao == "Presidente"))
-                    {
-                        cout << "Digite a nova área de formação" << endl;
-                        getline(cin, areaDeFormacao);
-                        presidente.setAreaDeFormacao(areaDeFormacao);
-                        cout << "Digite a nova formação máxima" << endl;
-                        getline(cin, formacaoAcademicaMax);
-                        presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
+                    break;}
 
-                        //funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
-                       // funcionarios[i]->setFormacaoAcademicaMax(formacaoAcademicaMax);
-                    }
-
-                    funcionarios[i]->setDesignacao(designacao);
-
-                    break;
                 case 7:
-                    cout << "Digite a designação do funcionário (Gerente ou Diretor):" << endl;
-                    getline(cin, designacao);
-                    if ((designacao == "gerente") || (designacao == "Gerente"))
-                    {
-                        cout << "Digite a nova area de supervisao" << endl;
-                        getline(cin, areaDeSupervisao);
-                        gerente.setAreaDeSupervisao(areaDeSupervisao);
-                    }
-                    else if ((designacao == "diretor") || (designacao == "Diretor"))
-                    {
-                        cout << "Digite a nova área de supervisão" << endl;
-                        getline(cin, areaDeSupervisao);
-                        diretor.setAreaDeSupervisao(areaDeSupervisao);
-                    }
-                    break;
-                case 8:
-                    if ((designacao == "diretor") || (designacao == "Diretor"))
-                    {
-                        cout << "Digite a nova área de formação" << endl;
-                        getline(cin, areaDeFormacao);
-                        diretor.setAreaDeFormacao(areaDeSupervisao);
-                    }
-                    else if ((designacao == "presidente") || (designacao == "Presidente"))
-                    {
-                        cout << "Digite a nova área de formação" << endl;
-                        getline(cin, areaDeFormacao);
-                        presidente.setAreaDeFormacao(areaDeSupervisao);
-                    }
-                    break;
-                case 9:
-                    // se precisa verificar se o codigo é de um funcionario com cargo de presidente
-                    cout << "Digite a nova formação máxima" << endl;
-                    getline(cin, areaDeFormacao);
-                    presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
-                    break;
-                case 0:
                     cout << "Digite o novo salário do funcionário" << endl;
                     cin >> salario;
                     cin.ignore();
@@ -261,49 +230,13 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                     break;
                 }
 
-                /* cout << "Digite a nova designação do funcionário (Operador, Gerente, Diretor ou Presidente):" << endl;
-                getline(cin, designacao);
-                if ((designacao == "gerente") || (designacao == "Gerente"))
-                {
-                    cout << "Digite a nova area de supervisao" << endl;
-                    getline(cin, areaDeSupervisao);
-                    gerente.setAreaDeSupervisao(areaDeSupervisao);
-                }
-                else if ((designacao == "diretor") || (designacao == "Diretor"))
-                {
-                    cout << "Digite a nova área de supervisão" << endl;
-                    getline(cin, areaDeSupervisao);
-                    diretor.setAreaDeSupervisao(areaDeSupervisao);
-                    cout << "Digite a nova área de formação" << endl;
-                    getline(cin, areaDeFormacao);
-                    diretor.setAreaDeFormacao(areaDeSupervisao);
-                }
-                else if ((designacao == "presidente") || (designacao == "Presidente"))
-                {
-                    cout << "Digite a nova área de formação" << endl;
-                    getline(cin, areaDeFormacao);
-                    presidente.setAreaDeFormacao(areaDeSupervisao);
-                    cout << "Digite a nova formação máxima" << endl;
-                    getline(cin, areaDeFormacao);
-                    presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
-                }
-                else if ((designacao == "operador") || (designacao == "Operador"))
-                {
-                    continue;
-                }
-
-                cout << "Digite o novo salário do funcionário" << endl;
-                cin >> salario;
-                cin.ignore();*/
-
                 right = 1;
             }
-            //else
-          //  {
-          //      cout << "Código não encontrado, digite novamente" << endl;
-          //  }
+
         }
     }
+    system("pause");
+    system("cls");
 }
 
 void GerenciarFuncionario::excluirRegistroDeFuncionario()
@@ -312,7 +245,7 @@ void GerenciarFuncionario::excluirRegistroDeFuncionario()
     string confirmacao;
     int indice, achado = 0; // variaveis para busca de um funcionario válido
 
-    cout << "______MENU DE EXCLUSAO DE FUNCIONARIOS______" << endl
+    cout << "___MENU DE EXCLUSAO DE FUNCIONARIOS___" << endl
          << "Há um total de: " << funcionarios.size() << " funcionarios na empresa" << endl
          << endl; // mostrar numero de funcionarios cadastrados na empresa
     cout << "Digite o código do funcionário que você deseja excluir:" << endl;
@@ -370,6 +303,8 @@ void GerenciarFuncionario::excluirRegistroDeFuncionario()
             break;
         }
     }
+    system("pause");
+    system("cls");
 }
 
 // função para salvar no arquivo os funcionários criados
@@ -396,7 +331,7 @@ void GerenciarFuncionario::salvarNoArquivo()
         float salario = funcionario->getSalario();
 
         arquivo << funcionarios[i]->salvarNoArquivo();
-        
+
         if (i != (funcionarios.size() - 1))
         {
             arquivo << "\n";
@@ -431,7 +366,7 @@ void GerenciarFuncionario::lerNoArquivo() // Codigo para ler no arquivo os funci
         string formacaoAcademicaMax;
         string salario;
 
-        getline(arquivo, codigo, ','); 
+        getline(arquivo, codigo, ',');
         getline(arquivo, nome, ',');
         getline(arquivo, endereco, ',');
         getline(arquivo, telefone, ',');
@@ -451,11 +386,11 @@ void GerenciarFuncionario::lerNoArquivo() // Codigo para ler no arquivo os funci
                 getline(arquivo, areaDeSupervisao, '\n');
                 //Funcionario func = new Funcionario();
                 //func.setAtributos(stoi(codigo), stof(salario), nome, endereco, telefone, dataDeIngresso, designacao);
-                adicionarNovoFuncionario(new Funcionario(stoi(codigo), nome, endereco, telefone, dataDeIngresso, designacao, stof(salario)));    
-                
+                adicionarNovoFuncionario(new Funcionario(stoi(codigo), nome, endereco, telefone, dataDeIngresso, designacao, stof(salario)));
+
             } else if((designacao == "gerente") || (designacao == "Gerente"))
             {
-                
+
                 getline(arquivo, areaDeSupervisao, '\n');
                // gerente.setAreaDeSupervisao(areaDeSupervisao);
                 adicionarNovoFuncionario(new Gerente(stoi(codigo),nome,endereco,telefone,dataDeIngresso,designacao,areaDeSupervisao,stof(salario)));
