@@ -84,39 +84,50 @@ int main()
             dataDeIngresso.setDia(dia);
             dataDeIngresso.setMes(mes);
             dataDeIngresso.setAno(ano);
+            
+            
+            cout << "Digite o salário do funcionário" << endl;
+            cin >> salario;
+            cin.ignore();
 
             cout << "Digite a designação do funcionário (Operador, Gerente, Diretor ou Presidente):" << endl;
             getline(cin, designacao);
-            if ((designacao == "gerente") || (designacao == "Gerente"))
+            if ((designacao == "operador") || (designacao == "Operador")){
+                
+                gerenciar.adicionarNovoFuncionario(new Funcionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, salario));    
+                
+            } else if((designacao == "gerente") || (designacao == "Gerente"))
             {
                 cout << "Digite a area de supervisao" << endl;
                 getline(cin, areaDeSupervisao);
-                gerente.setAreaDeSupervisao(areaDeSupervisao);
+               // gerente.setAreaDeSupervisao(areaDeSupervisao);
+                gerenciar.adicionarNovoFuncionario(new Gerente(codigo,nome,endereco,telefone,dataDeIngresso,designacao,areaDeSupervisao,salario));
             }
             else if ((designacao == "diretor") || (designacao == "Diretor"))
             {
                 cout << "Digite a área de supervisão" << endl;
                 getline(cin, areaDeSupervisao);
-                diretor.setAreaDeSupervisao(areaDeSupervisao);
+               // diretor.setAreaDeSupervisao(areaDeSupervisao);
                 cout << "Digite a área de formação" << endl;
                 getline(cin, areaDeFormacao);
-                diretor.setAreaDeFormacao(areaDeSupervisao);
+               // diretor.setAreaDeFormacao(areaDeFormacao);
+                gerenciar.adicionarNovoFuncionario(new Diretor(codigo,nome,endereco, telefone, dataDeIngresso, designacao, areaDeSupervisao,areaDeFormacao,salario));
             }
             else if ((designacao == "presidente") || (designacao == "Presidente"))
             {
                 cout << "Digite a área de formação" << endl;
                 getline(cin, areaDeFormacao);
-                presidente.setAreaDeFormacao(areaDeSupervisao);
+              //  presidente.setAreaDeFormacao(areaDeSupervisao);
                 cout << "Digite a formação máxima" << endl;
-                getline(cin, areaDeFormacao);
-                presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
+                getline(cin, formacaoAcademicaMax);
+                //presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
+                gerenciar.adicionarNovoFuncionario(new Presidente(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, formacaoAcademicaMax, salario));
+
             }
 
-            cout << "Digite o salário do funcionário" << endl;
-            cin >> salario;
-            cin.ignore();
+
             
-            gerenciar.adicionarNovoFuncionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, salario);
+            //gerenciar.adicionarNovoFuncionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, salario);
             break;
             // entrada das variáveis do funcionário e salvamento dessas no vetor de funcionários
         case READ:
@@ -165,7 +176,7 @@ int getOption()
     int in;
 
     cout << "Bem vindo ao Sistema de Controle de funcionários" << endl;
-    cout << "----------------------------------------------" << endl;
+    cout << "-------------------------------------------------" << endl;
     cout << "1 - Adicionar um novo funcionário" << endl;
     cout << "2 - Ver a lista de funcionários" << endl;
     cout << "3 - Ver a lista de funcionários por tipo" << endl;
@@ -173,7 +184,7 @@ int getOption()
     cout << "5 - Atualizar o cadastro de um funcionário" << endl;
     cout << "6 - Remover um funcionário" << endl;
     cout << "7 - Sair" << endl;
-    cout << "----------------------------------------------" << endl;
+    cout << "-------------------------------------------------" << endl;
     cout << "Selecione uma opção [1-7]:" << endl;
     cin >> in;
     cin.ignore();

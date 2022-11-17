@@ -13,12 +13,24 @@ GerenciarFuncionario::~GerenciarFuncionario()
 {
 }
 
-void GerenciarFuncionario::adicionarNovoFuncionario(int codigo, string nome, string endereco, string telefone, Data dataDeIngresso, string designacao, string areaDeSupervisao, string areaDeFormacao, string formacaoAcademicaMax, float salario)
-{
-    Funcionario *funcionario = new Funcionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, salario);
+//void GerenciarFuncionario::adicionarNovoFuncionario(int codigo, string nome, string endereco, string telefone, Data dataDeIngresso, string designacao, string areaDeSupervisao, string areaDeFormacao, string formacaoAcademicaMax, float salario)
+//{
+    //Funcionario *funcionario = new Funcionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, salario);
 
-    funcionarios.push_back(funcionario); // adiciona um funcionario na ultima casa do vetor funcionarios
+    //funcionarios.push_back(funcionario); // adiciona um funcionario na ultima casa do vetor funcionarios
+
+  //  if(designacao == "presidente" || designacao == "Presidente"){
+  //      funcionarios.push_back(new Presidente(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, formacaoAcademicaMax, salario));
+  //  }
+    
+//}
+void GerenciarFuncionario::adicionarNovoFuncionario(Funcionario *func)
+{
+    funcionarios.push_back(func);
+
+
 }
+
 
 void GerenciarFuncionario::exibirListaDeFuncionarios()
 { // exibe cada funcionario da lista de funcionarios
@@ -33,7 +45,7 @@ void GerenciarFuncionario::exibirListaDeFuncionariosPorTipo()
 {
     string designacao;
     int certo = 0;
-    cout << "Digite a designação(Operador, Gerente, Diretor ou Presidente) com a primeira letra maiúscula ou minúscula" << endl;
+    cout << "Digite a designação(Operador, Gerente, Diretor ou Presidente) com a primeira letra maiúscula" << endl;
     cin >> designacao;
     getchar();
     while (certo == 0)
@@ -174,7 +186,7 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                         getline(cin, areaDeSupervisao);
                         gerente.setAreaDeSupervisao(areaDeSupervisao);
 
-                        funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
+                       // funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
                     }
                     else if ((designacao == "diretor") || (designacao == "Diretor"))
                     {
@@ -185,8 +197,8 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                         getline(cin, areaDeFormacao);
                         diretor.setAreaDeFormacao(areaDeSupervisao);
 
-                        funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
-                        funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
+                      //  funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
+                       // funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
                     }
                     else if ((designacao == "presidente") || (designacao == "Presidente"))
                     {
@@ -197,8 +209,8 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                         getline(cin, formacaoAcademicaMax);
                         presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
 
-                        funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
-                        funcionarios[i]->setFormacaoAcademicaMax(formacaoAcademicaMax);
+                        //funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
+                       // funcionarios[i]->setFormacaoAcademicaMax(formacaoAcademicaMax);
                     }
 
                     funcionarios[i]->setDesignacao(designacao);
@@ -286,10 +298,10 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
 
                 right = 1;
             }
-            else
-            {
-                cout << "Código não encontrado, digite novamente" << endl;
-            }
+            //else
+          //  {
+          //      cout << "Código não encontrado, digite novamente" << endl;
+          //  }
         }
     }
 }
@@ -383,10 +395,8 @@ void GerenciarFuncionario::salvarNoArquivo()
         string designacao = funcionario->getDesignacao();
         float salario = funcionario->getSalario();
 
-        cout << funcionario->getDataDeIngresso().getData() << endl;
-
-        arquivo << codigo << "," << nome << "," << endereco << "," << telefone << "," << dia << "," << mes << "," << ano << "," << designacao << "," << funcionario->getAreaDeSupervisao() << "," << funcionario->getAreaDeFormacao() << "," << funcionario->getFormacaoAcademicaMax() << "," << salario;
-
+        arquivo << funcionarios[i]->salvarNoArquivo();
+        
         if (i != (funcionarios.size() - 1))
         {
             arquivo << "\n";
@@ -404,7 +414,6 @@ void GerenciarFuncionario::lerNoArquivo() // Codigo para ler no arquivo os funci
     {
         return;
     }
-
     while (1)
     {
         Funcionario *funcionario;
@@ -422,26 +431,54 @@ void GerenciarFuncionario::lerNoArquivo() // Codigo para ler no arquivo os funci
         string formacaoAcademicaMax;
         string salario;
 
-        getline(arquivo, codigo, ',');
+        getline(arquivo, codigo, ','); 
         getline(arquivo, nome, ',');
         getline(arquivo, endereco, ',');
         getline(arquivo, telefone, ',');
-        getline(arquivo, dia, ',');
-        getline(arquivo, mes, ',');
+        getline(arquivo, dia, '/');
+        getline(arquivo, mes, '/');
         getline(arquivo, ano, ',');
         getline(arquivo, designacao, ',');
-        getline(arquivo, areaDeSupervisao, ',');
-        getline(arquivo, areaDeFormacao, ',');
-        getline(arquivo, formacaoAcademicaMax, ',');
-        getline(arquivo, salario, '\n');
+        getline(arquivo, salario, ',');
 
         Data dataDeIngresso;
         dataDeIngresso.setDia(dia);
         dataDeIngresso.setMes(mes);
         dataDeIngresso.setAno(ano);
 
-        adicionarNovoFuncionario(stoi(codigo), nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, stof(salario));
+        //adicionarNovoFuncionario(stoi(codigo), nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, stof(salario));
+        if ((designacao == "operador") || (designacao == "Operador")){
+                getline(arquivo, areaDeSupervisao, '\n');
+                //Funcionario func = new Funcionario();
+                //func.setAtributos(stoi(codigo), stof(salario), nome, endereco, telefone, dataDeIngresso, designacao);
+                adicionarNovoFuncionario(new Funcionario(stoi(codigo), nome, endereco, telefone, dataDeIngresso, designacao, stof(salario)));    
+                
+            } else if((designacao == "gerente") || (designacao == "Gerente"))
+            {
+                
+                getline(arquivo, areaDeSupervisao, '\n');
+               // gerente.setAreaDeSupervisao(areaDeSupervisao);
+                adicionarNovoFuncionario(new Gerente(stoi(codigo),nome,endereco,telefone,dataDeIngresso,designacao,areaDeSupervisao,stof(salario)));
+            }
+            else if ((designacao == "diretor") || (designacao == "Diretor"))
+            {
 
+                getline(arquivo, areaDeSupervisao, ',');
+               // diretor.setAreaDeSupervisao(areaDeSupervisao);
+
+                getline(arquivo, areaDeFormacao, '\n');
+               // diretor.setAreaDeFormacao(areaDeFormacao);
+                adicionarNovoFuncionario(new Diretor(stoi(codigo),nome,endereco, telefone, dataDeIngresso, designacao, areaDeSupervisao,areaDeFormacao,stof(salario)));
+            }
+            else if ((designacao == "presidente") || (designacao == "Presidente"))
+            {
+                getline(arquivo, areaDeFormacao, ',');
+              //  presidente.setAreaDeFormacao(areaDeSupervisao);
+
+                getline(arquivo, formacaoAcademicaMax, '\n');
+                //presidente.setFormacaoAcademicaMax(formacaoAcademicaMax);
+                adicionarNovoFuncionario(new Presidente(stoi(codigo), nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, formacaoAcademicaMax, stof(salario)));
+            }
         if (arquivo.eof())
         {
             break;

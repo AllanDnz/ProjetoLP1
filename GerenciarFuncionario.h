@@ -5,13 +5,13 @@
 #include <vector>
 #pragma once
 
-class GerenciarFuncionario
+class GerenciarFuncionario 
 {
 public:
     GerenciarFuncionario();
     ~GerenciarFuncionario();
-
-    void adicionarNovoFuncionario(int codigo, string nome, string endereco, string telefone, Data dataDeIngresso, string designacao, string areaDeSupervisao, string areaDeFormacao, string formacaoAcademicaMax, float salario);
+    void adicionarNovoFuncionario(Funcionario *func);
+    //void adicionarNovoFuncionario(int codigo, string nome, string endereco, string telefone, Data dataDeIngresso, string designacao, string areaDeSupervisao, string areaDeFormacao, string formacaoAcademicaMax, float salario);
     void editarRegistroDeUmFuncionario();
     void excluirRegistroDeFuncionario();
 

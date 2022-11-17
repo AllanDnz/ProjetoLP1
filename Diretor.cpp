@@ -15,10 +15,11 @@ Diretor::Diretor()
     areaDeFormacao = "";
 }
 
-Diretor::Diretor(string areaDeSupervisao, string areaDeformacao)
+Diretor::Diretor(int codigo, string nome, string endereco, string telefone, Data dataDeIngresso, string designacao, string areaDeSupervisao, string areaDeFormacao, float salario)
 {
-    setAreaDeSupervisao(areaDeSupervisao);
-    setAreaDeFormacao(areaDeFormacao);
+    Funcionario::setAtributos(codigo, salario, nome, endereco, telefone, dataDeIngresso, designacao);
+    this->areaDeSupervisao = areaDeSupervisao;
+    this->areaDeFormacao = areaDeFormacao;
 }
 
 string Diretor::getAreaDeSupervisao()
@@ -38,4 +39,16 @@ void Diretor::setAreaDeFormacao(string areaDeFormacao)
 void Diretor::setAreaDeSupervisao(string areaDeSupervisao)
 {
     this->areaDeSupervisao = areaDeSupervisao;
+}
+
+string Diretor::toString()
+{
+string data = Funcionario::toString();
+data += "Area de formacao: " + areaDeFormacao + "\nArea de supervisao: " + areaDeSupervisao + "\n";
+return data;
+}
+string Diretor::salvarNoArquivo(){
+string data = Funcionario::salvarNoArquivo();
+data += areaDeFormacao + "," + areaDeSupervisao;
+    
 }

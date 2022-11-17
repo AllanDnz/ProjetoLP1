@@ -19,7 +19,7 @@ Funcionario::Funcionario()
 }
 
 Funcionario::Funcionario(int codigo, string nome, string endereco, string telefone, Data dataDeIngresso,
-                         string designacao, string areaDeSupervisao, string areaDeFormacao, string formacaoAcademicaMax, float salario)
+                         string designacao, float salario)
 {
 
     setCodigo(codigo);
@@ -106,5 +106,21 @@ string Funcionario::toString()
     ostringstream salarioStream;
     salarioStream.precision(2);
     salarioStream << fixed << this->salario;
-    return to_string(this->codigo) + "\n" + this->nome + "\n" + this->endereco + "\n" + this->telefone + "\n" + this->dataDeIngresso.getData() + "\n" + this->designacao + "\n" + salarioStream.str();
+    return "Codigo: " + to_string(this->codigo) + "\nNome: " + this->nome + "\nEndereco: " + this->endereco + "\nTel.: " + this->telefone + "\nData de ingresso: " + this->dataDeIngresso.getData() + "\nDesignacao: " + this->designacao + "\nSalario: " + salarioStream.str() + "\n";
+}
+
+void Funcionario::setAtributos(int codigo, float salario, string nome, string endereco, string telefone, Data dataDeIngresso, string designacao){
+    this->codigo = codigo;
+    this->salario = salario;
+    this->nome = nome;
+    this->endereco = endereco;
+    this->telefone = telefone;
+    this->dataDeIngresso = dataDeIngresso;
+    this->designacao = designacao;
+}
+string Funcionario::salvarNoArquivo(){
+    ostringstream salarioStream;
+    salarioStream.precision(2);
+    salarioStream << fixed << this->salario;
+    return to_string(this->codigo) + "," + this->nome + "," + this->endereco + "," + this->telefone + "," + this->dataDeIngresso.getData() + "," + this->designacao + "," + salarioStream.str() + ",";
 }
