@@ -32,6 +32,9 @@ void GerenciarFuncionario::adicionarNovoFuncionario(Funcionario *func)
 
 void GerenciarFuncionario::exibirListaDeFuncionarios()
 { // exibe cada funcionario da lista de funcionarios
+    if(!funcionarios.size()){
+        cout<<"\nN�o h� funcion�rios cadastrados\n";
+    }
     for (int i = 0; i < funcionarios.size(); i++)
     {
         cout << funcionarios[i]->toString() << endl;
@@ -45,28 +48,23 @@ void GerenciarFuncionario::exibirListaDeFuncionariosPorTipo()
 {
     string designacao;
     int certo = 0;
-    cout << "Digite a designação(Operador, Gerente, Diretor ou Presidente) com a primeira letra maiúscula" << endl;
+    cout << "Digite a designa��o(Operador, Gerente, Diretor ou Presidente) com a primeira letra mai�scula" << endl;
     cin >> designacao;
     getchar();
-    while (certo == 0)
-    {
         for (int i = 0; i < funcionarios.size(); i++)
         {
             if (designacao == funcionarios[i]->getDesignacao())
             {
-                cout << funcionarios[i]->toString() << endl; // retorna todos os dados dos funcionarios de determinada designação
+                cout << funcionarios[i]->toString() << endl; // retorna todos os dados dos funcionarios de determinada designa��o
                 certo = 1;
-            }
-            else
-            {
-                cout << "Digite corretamente a designação" << endl;
-            }
 
-            cout << "\n";
-            system("pause");
-            system("cls");
+            }
         }
-    }
+        if(!certo){
+            cout << "Digite corretamente a designa��o" << endl;
+        }
+        system("pause");
+        system("cls");
 }
 
 void GerenciarFuncionario::exibirRegistroDeUmFuncionario()
@@ -75,22 +73,19 @@ void GerenciarFuncionario::exibirRegistroDeUmFuncionario()
     int correto = 0;
     cin >> codigo;
     getchar();
-    while (correto == 0)
-    {
         for (int i = 0; i < funcionarios.size(); i++)
         {
-            if (codigo == funcionarios[i]->getCodigo()) // encontra a posição no vetor que tem o funcionario com determinado codigo
+            if (codigo == funcionarios[i]->getCodigo()) // encontra a posi��o no vetor que tem o funcionario com determinado codigo
             {
 
                 cout << funcionarios[i]->toString() << endl;
                 correto = 1;
             }
-            else
-            {
-                cout << "Código não encontrado, digite novamente" << endl;
-            }
+
         }
-    }
+        if(!correto){
+            cout << "Digite o codigo corretamente" << endl;
+        }
     system("pause");
     system("cls");
 }
@@ -100,7 +95,7 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
     int edit;
     int codigo;
 
-    cout << "Digite o código do funcionárion que você deseja editar" << endl;
+    cout << "Digite o c�digo do funcion�rion que voc� deseja editar" << endl;
     cin >> codigo;
     getchar();
     int right = 0;
@@ -131,7 +126,7 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
             if (codigo == funcionarios[i]->getCodigo())
             {
                 system("cls");
-                cout << "Editar o registo do funcionário" << codigo << endl;
+                cout << "Editar o registo do funcion�rio" << codigo << endl;
                 cout << "Digite o que deseja editar:" << endl;
                 cout << "\t1 - Codigo" << endl;
                 cout << "\t2 - Nome" << endl;
@@ -147,28 +142,28 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                 switch (edit)
                 {
                 case 1:
-                    cout << "Digite o código do funcionário" << endl;
+                    cout << "Digite o c�digo do funcion�rio" << endl;
                     cin >> codigo;
                     cin.ignore();
                     funcionarios[i]->setCodigo(codigo);
                     break;
                 case 2:
-                    cout << "Digite o novo nome do funcionário" << endl;
+                    cout << "Digite o novo nome do funcion�rio" << endl;
                     getline(cin, nome);
                     funcionarios[i]->setNome(nome);
                     break;
                 case 3:
-                    cout << "Digite o novo endereço do funcionário" << endl;
+                    cout << "Digite o novo endere�o do funcion�rio" << endl;
                     getline(cin, endereco);
                     funcionarios[i]->setEndereco(endereco);
                     break;
                 case 4:
-                    cout << "Digite o novo telefone do funcionário" << endl;
+                    cout << "Digite o novo telefone do funcion�rio" << endl;
                     getline(cin, telefone);
                     funcionarios[i]->setTelefone(telefone);
                     break;
                 case 5:
-                    cout << "Digite a nova data de ingresso do funcionário" << endl;
+                    cout << "Digite a nova data de ingresso do funcion�rio" << endl;
                     getline(cin, dia);
                     getline(cin, mes);
                     getline(cin, ano);
@@ -189,7 +184,7 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                     string areaDeSupervisao;
                     string areaDeFormacao;
                     string formacaoAcademicaMax;
-                    cout << "Digite a nova designação do funcionário (Operador, Gerente, Diretor ou Presidente):" << endl;
+                    cout << "Digite a nova designa��o do funcion�rio (Operador, Gerente, Diretor ou Presidente):" << endl;
                     string antiga = funcionarios[i]->getDesignacao();
                     getline(cin, designacao);
                     //cout<<"To aqui "<<antiga<<" Nova "<<designacao;
@@ -206,14 +201,14 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                         }else if(designacao == "Diretor"){
                             cout<<"\nDigite a area de supervisao\n";
                             getline(cin, areaDeSupervisao);
-                            cout<<"\nDigite a area de Formação\n";
+                            cout<<"\nDigite a area de Forma��o\n";
                             getline(cin, areaDeFormacao);
                             funcionarios.erase(funcionarios.begin() + i);
                             funcionarios.push_back(new Diretor(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeSupervisao, areaDeFormacao, salario));
                         }else if(designacao == "Presidente"){
-                            cout<<"\nDigite a area de formação\n";
+                            cout<<"\nDigite a area de forma��o\n";
                             getline(cin, areaDeFormacao);
-                            cout<<"\nDigite a area de formação maxima\n";
+                            cout<<"\nDigite a area de forma��o maxima\n";
                             getline(cin, formacaoAcademicaMax);
                             funcionarios.erase(funcionarios.begin() + i);
                             funcionarios.push_back(new Presidente(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, formacaoAcademicaMax, salario));
@@ -222,7 +217,7 @@ void GerenciarFuncionario::editarRegistroDeUmFuncionario()
                     break;}
 
                 case 7:
-                    cout << "Digite o novo salário do funcionário" << endl;
+                    cout << "Digite o novo sal�rio do funcion�rio" << endl;
                     cin >> salario;
                     cin.ignore();
                     break;
@@ -243,12 +238,12 @@ void GerenciarFuncionario::excluirRegistroDeFuncionario()
 {
     int codigo;
     string confirmacao;
-    int indice, achado = 0; // variaveis para busca de um funcionario válido
+    int indice, achado = 0; // variaveis para busca de um funcionario v�lido
 
     cout << "___MENU DE EXCLUSAO DE FUNCIONARIOS___" << endl
-         << "Há um total de: " << funcionarios.size() << " funcionarios na empresa" << endl
+         << "H� um total de: " << funcionarios.size() << " funcionarios na empresa" << endl
          << endl; // mostrar numero de funcionarios cadastrados na empresa
-    cout << "Digite o código do funcionário que você deseja excluir:" << endl;
+    cout << "Digite o c�digo do funcion�rio que voc� deseja excluir:" << endl;
 
     while (1)
     {
@@ -282,8 +277,8 @@ void GerenciarFuncionario::excluirRegistroDeFuncionario()
             if (funcionarios.at(i)->getDesignacao() == "Diretor" || funcionarios.at(i)->getDesignacao() == "Presidente" || funcionarios.at(i)->getDesignacao() == "presidente" || funcionarios.at(i)->getDesignacao() == "diretor")
             {
 
-                // se o funcionario achado for um diretor ou presidente é impossivel deletar
-                cout << "\n Diretores e presidentes não podem ser excluidos" << endl;
+                // se o funcionario achado for um diretor ou presidente � impossivel deletar
+                cout << "\n Diretores e presidentes n�o podem ser excluidos" << endl;
                 break;
             }
 
@@ -293,12 +288,12 @@ void GerenciarFuncionario::excluirRegistroDeFuncionario()
             if (confirmacao == "s")
             {
                 delete funcionarios.at(i);                    // liberando a memoria dinamica ocupada pelo funcionario naquele indice
-                funcionarios.erase(funcionarios.begin() + i); // No inésimo elemento vai deletar o funcionario que estava lá
+                funcionarios.erase(funcionarios.begin() + i); // No in�simo elemento vai deletar o funcionario que estava l�
                 cout << "Funcionario apagado com sucesso" << endl;
             }
             else if (confirmacao == "n")
             {
-                cout << "Exclusão de funcionario cancelada" << endl;
+                cout << "Exclus�o de funcionario cancelada" << endl;
             }
             break;
         }
@@ -307,7 +302,7 @@ void GerenciarFuncionario::excluirRegistroDeFuncionario()
     system("cls");
 }
 
-// função para salvar no arquivo os funcionários criados
+// fun��o para salvar no arquivo os funcion�rios criados
 void GerenciarFuncionario::salvarNoArquivo()
 {
     std::ofstream arquivo("data.csv");
@@ -341,7 +336,7 @@ void GerenciarFuncionario::salvarNoArquivo()
     arquivo.close();
 }
 
-void GerenciarFuncionario::lerNoArquivo() // Codigo para ler no arquivo os funcionários salvos pela função salvar no arquivo
+void GerenciarFuncionario::lerNoArquivo() // Codigo para ler no arquivo os funcion�rios salvos pela fun��o salvar no arquivo
 {
     std::ifstream arquivo("data.csv");
 
