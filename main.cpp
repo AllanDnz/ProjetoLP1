@@ -57,7 +57,7 @@ int main()
     while (options != EXIT)
     {
         options = getOption();
-        system("cls");
+
         switch (options)
         {
         case CREATE:
@@ -84,8 +84,8 @@ int main()
             dataDeIngresso.setDia(dia);
             dataDeIngresso.setMes(mes);
             dataDeIngresso.setAno(ano);
-
-
+            
+            
             cout << "Digite o salário do funcionário" << endl;
             cin >> salario;
             cin.ignore();
@@ -93,9 +93,9 @@ int main()
             cout << "Digite a designação do funcionário (Operador, Gerente, Diretor ou Presidente):" << endl;
             getline(cin, designacao);
             if ((designacao == "operador") || (designacao == "Operador")){
-
-                gerenciar.adicionarNovoFuncionario(new Funcionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, salario));
-
+                
+                gerenciar.adicionarNovoFuncionario(new Funcionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, salario));    
+                
             } else if((designacao == "gerente") || (designacao == "Gerente"))
             {
                 cout << "Digite a area de supervisao" << endl;
@@ -126,7 +126,7 @@ int main()
             }
 
 
-
+            
             //gerenciar.adicionarNovoFuncionario(codigo, nome, endereco, telefone, dataDeIngresso, designacao, areaDeFormacao, areaDeSupervisao, formacaoAcademicaMax, salario);
             break;
             // entrada das variáveis do funcionário e salvamento dessas no vetor de funcionários
@@ -153,7 +153,7 @@ int main()
             break;
 
         case UPDATE:
-
+        
             gerenciar.editarRegistroDeUmFuncionario();
 
             break;
@@ -174,6 +174,7 @@ int main()
 int getOption()
 {
     int in;
+
     cout << "Bem vindo ao Sistema de Controle de funcionários" << endl;
     cout << "-------------------------------------------------" << endl;
     cout << "1 - Adicionar um novo funcionário" << endl;
