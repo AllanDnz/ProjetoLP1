@@ -240,7 +240,7 @@ void GerenciarFuncionario::excluirRegistroDeFuncionario()
     string confirmacao;
     int indice, achado = 0; // variaveis para busca de um funcionario v�lido
 
-    cout << "___MENU DE EXCLUSAO DE FUNCIONARIOS___" << endl
+    cout << "______MENU DE EXCLUSAO DE FUNCIONARIOS______" << endl
          << "H� um total de: " << funcionarios.size() << " funcionarios na empresa" << endl
          << endl; // mostrar numero de funcionarios cadastrados na empresa
     cout << "Digite o c�digo do funcion�rio que voc� deseja excluir:" << endl;
